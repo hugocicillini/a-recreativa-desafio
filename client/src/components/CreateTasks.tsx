@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const CreateTasks = () => {
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -19,9 +19,11 @@ const CreateTasks = () => {
       ...values,
       collectionSkills: selectedSkills,
     };
-    axios.post('https://a-recreativa-desafio.onrender.com/api/tasks/create', data).then(() => {
-      window.location.reload();
-    });
+    axios
+      .post('https://a-recreativa-desafio.onrender.com/api/tasks/create', data)
+      .then(() => {
+        window.location.reload();
+      });
   };
 
   const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (
