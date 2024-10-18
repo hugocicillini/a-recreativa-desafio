@@ -10,18 +10,23 @@ import { Task } from './lib/Types';
 const App = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/tasks').then((response) => {
-      if (searchValue) {
-        const filteredTasks = response.data.filter((task: Task) =>
-          task.title.toLowerCase().includes(searchValue.toLowerCase())
-        );
-        setTasks(filteredTasks);
-      } else {
-        setTasks(response.data);
-      }
-    });
+    axios
+      .get('https://a-recreativa-desafio.onrender.com/api/tasks')
+      .then((response) => {
+        if (searchValue) {
+          const filteredTasks = response.data.filter((task: Task) =>
+            task.title.toLowerCase().includes(searchValue.toLowerCase())
+          );
+          setTasks(filteredTasks);
+          setIsLoading(false);
+        } else {
+          setTasks(response.data);
+          setIsLoading(false);
+        }
+      });
   }, [searchValue]);
 
   return (
@@ -32,9 +37,15 @@ const App = () => {
       </Header>
       <Content>
         <SearchBar setSearchValue={setSearchValue} />
-        <Tasks tasks={tasks} />
+        {isLoading ? (
+          <p className="text-center min-h-[100vh] pt-12">Carregando...</p>
+        ) : (
+          <Tasks tasks={tasks} />
+        )}
       </Content>
-      <Footer>Footer</Footer>
+      <Footer className="flex justify-center items-center bg-gray-600">
+        @2024 - hugocicillini :)
+      </Footer>
     </Layout>
   );
 };

@@ -14,7 +14,7 @@ const FormTasks = ({
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/skills')
+      .get('https://a-recreativa-desafio.onrender.com/api/skills')
       .then((response) => {
         setSkills(response.data.map((skill: { name: string }) => skill.name));
       })

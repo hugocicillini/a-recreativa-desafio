@@ -32,7 +32,10 @@ const Tasks = ({ tasks }: { tasks: Task[] }) => {
 
   const onFinish = async (values: Task) => {
     axios
-      .put(`http://localhost:5000/api/tasks/${selectedTask?._id}`, values)
+      .put(
+        `https://a-recreativa-desafio.onrender.com/api/tasks/${selectedTask?._id}`,
+        values
+      )
       .then(() => {
         window.location.reload();
       });
@@ -116,9 +119,11 @@ const Tasks = ({ tasks }: { tasks: Task[] }) => {
                     </Modal>
                     <Button
                       onClick={() =>
-                        axios.delete(
-                          `http://localhost:5000/api/tasks/${task._id}`
-                        ).then(() => window.location.reload())
+                        axios
+                          .delete(
+                            `https://a-recreativa-desafio.onrender.com/api/tasks/${task._id}`
+                          )
+                          .then(() => window.location.reload())
                       }
                     >
                       🗑️

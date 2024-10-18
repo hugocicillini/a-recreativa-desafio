@@ -19,7 +19,7 @@ const CreateTasks = () => {
       ...values,
       collectionSkills: selectedSkills,
     };
-    axios.post('http://localhost:5000/api/tasks/create', data).then(() => {
+    axios.post('https://a-recreativa-desafio.onrender.com/api/tasks/create', data).then(() => {
       window.location.reload();
     });
   };

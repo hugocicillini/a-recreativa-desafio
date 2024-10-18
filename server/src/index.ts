@@ -19,8 +19,6 @@ app.get('/', (req, res) => {
   res.send('Server running!');
 });
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:${PORT}`);
+app.listen(() => {
+  console.log(`Servidor iniciado em https://a-recreativa-desafio.onrender.com`);
 });
